@@ -15,12 +15,13 @@ namespace EmployeeReport.Infrastructure.Repositories.Tests
         public EmployeeRepositoryTests(DbContextOptions<EmployeeDbContext> contextOptions)
         {
             DbContextOptions = contextOptions;
+            //Seed();
         }
 
         protected DbContextOptions<EmployeeDbContext> DbContextOptions { get; }
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
             using (var context = new EmployeeDbContext(DbContextOptions))
             {
@@ -39,7 +40,7 @@ namespace EmployeeReport.Infrastructure.Repositories.Tests
         }
 
         [Test()]
-        public async Task AgeOver18TestAsync()
+        public async Task AgeOver18_Should_Return_2()
         {
             using (var context = new EmployeeDbContext(DbContextOptions))
             {
@@ -48,7 +49,7 @@ namespace EmployeeReport.Infrastructure.Repositories.Tests
 
                 var actual = await repository.AgeOver18Async();
 
-                Assert.AreEqual(actual.Count, 3);
+                Assert.AreEqual(2, actual.Count);
 
             }
         }
